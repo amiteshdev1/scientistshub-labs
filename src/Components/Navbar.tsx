@@ -323,7 +323,7 @@ export default function Navbar() {
           <button
             onClick={toggleMenu}
             aria-label="Toggle menu"
-            className="p-2 focus:outline-none transition-colors text-[var(--text-primary)] hover:text-[var(--text-secondary)] mr-4"
+            className="p-2 lg:hidden focus:outline-none transition-colors text-[var(--text-primary)] hover:text-[var(--text-secondary)] mr-4"
           >
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
