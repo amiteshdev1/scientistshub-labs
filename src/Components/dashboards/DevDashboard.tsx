@@ -42,7 +42,7 @@ export default function DevDashboard() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 aria-label={tab.ariaLabel}
-                aria-selected={activeTab === tab.id ? 'true' : 'false'}
+                aria-selected={activeTab === tab.id}
                 role="tab"
                 className={`dashboard-tab w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                   activeTab === tab.id
