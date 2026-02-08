@@ -28,84 +28,86 @@ const NAV_DATA = {
 
     {
       title: "Software Services",
-      path: "/services/software",
+      path: "/software",
       iconPath: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z",
       description: "Streamline your customer relationships and boost sales efficiency.",
       subItems: [
-        { name: "Real Estate CRM", path: "/services/software/real-estate-crm", icon: ICONS.settings },
-        { name: "Hospital CRM", path: "/services/software/hospital-crm", icon: ICONS.cloud },
-        // { name: "Real Estate CRM", path: "/services/crm-services/real-estate-crm", icon: ICONS.settings },
-        // { name: "Hospital CRM", path: "/services/crm-services/hospital-crm", icon: ICONS.cloud },
+        { name: "Real Estate CRM", path: "/software/real-estate-crm", icon: ICONS.settings },
+        { name: "Hospital CRM", path: "/software/hospital-crm", icon: ICONS.cloud },
+        { name: "Custom Software", path: "/software/custom-software", icon: ICONS.cloud },
+        // { name: "Real Estate CRM", path: "/crm-services/real-estate-crm", icon: ICONS.settings },
+        // { name: "Hospital CRM", path: "/crm-services/hospital-crm", icon: ICONS.cloud },
       ]
     },
-    {
-      title: "Digital Marketing",
-      path: "/services/digital-marketing",
-      iconPath: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
-      description: "Drive traffic, engagement, and conversions with data-driven strategies.",
-      subItems: [
-        { name: "SEO (Search Engine Opt)", path: "/services/digital-marketing/search-engine-optimization", icon: ICONS.chart },
-        { name: "PPC Advertising", path: "/services/digital-marketing/pay-per-click", icon: ICONS.rocket },
-        { name: "Social Media Optimization", path: "/services/digital-marketing/social-media-optimization", icon: ICONS.mobile },
-        { name: "Email Marketing", path: "/services/digital-marketing/email-marketing", icon: ICONS.settings },
-        { name: "Local SEO Services", path: "/services/digital-marketing/local-seo-services", icon: ICONS.design },
-        { name: "Content Marketing", path: "/services/digital-marketing/content-marketing", icon: ICONS.design },
-      ]
-    },
+   
     {
       title: "Development",
-      path: "/services/development",
+      path: "/development",
       iconPath: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
       description: "Robust, scalable, and secure web solutions tailored to your needs.",
       subItems: [
-        { name: "Full-Stack Development", path: "/services/development/full-stack-development", icon: ICONS.code },
-        // { name: "E-commerce Solutions", path: "/services/development/e-commerce-solutions", icon: ICONS.chart },
-        { name: "Custom Web Solution", path: "/services/development/custom-web-solution", icon: ICONS.settings },
-        { name: "API & System Integration", path: "/services/development/api-system-integration", icon: ICONS.cloud },
-        { name: "App Development", path: "/services/development/app-development", icon: ICONS.mobile },
-        { name: "iOS App Development", path: "/services/development/ios-app-development", icon: ICONS.mobile },
-        { name: "Android App Development", path: "/services/development/android-app-development", icon: ICONS.mobile },
-        { name: "App UI/UX Design", path: "/services/development/apps-ui-ux-design", icon: ICONS.design },
-        { name: "App Maintenance", path: "/services/development/app-maintenance", icon: ICONS.settings }
+        { name: "Web Development", path: "/development/web-development", icon: ICONS.code },
+        // { name: "E-commerce Solutions", path: "/development/e-commerce-solutions", icon: ICONS.chart },
+        { name: "Custom Web Solution", path: "/development/custom-web-solution", icon: ICONS.settings },
+        { name: "API & System Integration", path: "/development/api-system-integration", icon: ICONS.cloud },
+        { name: "App Development", path: "/development/app-development", icon: ICONS.mobile },
+        { name: "iOS App Development", path: "/development/ios-app-development", icon: ICONS.mobile },
+        { name: "Android App Development", path: "/development/android-app-development", icon: ICONS.mobile },
+        { name: "App UI/UX Design", path: "/development/apps-ui-ux-design", icon: ICONS.design },
+        { name: "App Maintenance", path: "/development/app-maintenance", icon: ICONS.settings }
+      ]
+    },
+     {
+      title: "Digital Marketing",
+      path: "/digital-marketing",
+      iconPath: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
+      description: "Drive traffic, engagement, and conversions with data-driven strategies.",
+      subItems: [
+        { name: "SEO (Search Engine Opt)", path: "/digital-marketing/search-engine-optimization", icon: ICONS.chart },
+        { name: "PPC Advertising", path: "/digital-marketing/pay-per-click", icon: ICONS.rocket },
+        { name: "Social Media Optimization", path: "/digital-marketing/social-media-optimization", icon: ICONS.mobile },
+        { name: "Email Marketing", path: "/digital-marketing/email-marketing", icon: ICONS.settings },
+        { name: "Local SEO Services", path: "/digital-marketing/local-seo-services", icon: ICONS.design },
+        { name: "Content Marketing", path: "/digital-marketing/content-marketing", icon: ICONS.design },
       ]
     },
     // {
     //   title: "Web Design",
-    //   path: "/services/web-design",
+    //   path: "/web-design",
     //   iconPath: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
     //   description: "Crafting stunning, user-centric experiences that captivate audiences.",
     //   subItems: [
-    //     { name: "UI/UX Design", path: "/services/web-design/ui-ux-design", icon: ICONS.design },
-    //     { name: "Responsive Web Design", path: "/services/web-design/responsive-web-design", icon: ICONS.mobile },
-    //     { name: "Landing Page Design", path: "/services/web-design/landing-page-design", icon: ICONS.rocket },
-    //     { name: "Mobile-First Design", path: "/services/web-design/mobile-first-design", icon: ICONS.mobile }
+    //     { name: "UI/UX Design", path: "/web-design/ui-ux-design", icon: ICONS.design },
+    //     { name: "Responsive Web Design", path: "/web-design/responsive-web-design", icon: ICONS.mobile },
+    //     { name: "Landing Page Design", path: "/web-design/landing-page-design", icon: ICONS.rocket },
+    //     { name: "Mobile-First Design", path: "/web-design/mobile-first-design", icon: ICONS.mobile }
     //   ]
     // },
     // {
     //   title: "Graphics Design",
-    //   path: "/services/graphics-design",
+    //   path: "/graphics-design",
     //   iconPath: "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z",
     //   description: "Visual storytelling that defines your brand identity.",
     //   subItems: [
-    //     { name: "Logo & Branding Identity", path: "/services/graphics-design/logo-branding", icon: ICONS.design },
+    //     { name: "Logo & Branding Identity", path: "/graphics-design/logo-branding", icon: ICONS.design },
     //     // { name: "Marketing Materials", path: "/marketing-design", icon: ICONS.chart },
-    //     { name: "Infographics Design", path: "/services/graphics-design/infographics-design", icon: ICONS.chart },
-    //     { name: "Motion Graphics", path: "/services/graphics-design/motion-graphics", icon: ICONS.rocket }
+    //     { name: "Infographics Design", path: "/graphics-design/infographics-design", icon: ICONS.chart },
+    //     { name: "Motion Graphics", path: "/graphics-design/motion-graphics", icon: ICONS.rocket }
     //   ]
     // },
     // {
     //   title: "App Development",
-    //   path: "/services/app-development",
+    //   path: "/app-development",
     //   iconPath: "M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z",
     //   description: "Innovative mobile applications for iOS and Android platforms.",
     //   subItems: [
-    //     { name: "iOS App Development", path: "/services/app-development/ios-app-development", icon: ICONS.mobile },
-    //     { name: "Android App Development", path: "/services/app-development/android-app-development", icon: ICONS.mobile },
-    //     { name: "App UI/UX Design", path: "/services/app-development/apps-ui-ux-design", icon: ICONS.design },
-    //     { name: "App Maintenance", path: "/services/app-development/app-maintenance", icon: ICONS.settings }
+    //     { name: "iOS App Development", path: "/app-development/ios-app-development", icon: ICONS.mobile },
+    //     { name: "Android App Development", path: "/app-development/android-app-development", icon: ICONS.mobile },
+    //     { name: "App UI/UX Design", path: "/app-development/apps-ui-ux-design", icon: ICONS.design },
+    //     { name: "App Maintenance", path: "/app-development/app-maintenance", icon: ICONS.settings }
     //   ]
     // }
-    //     { name: "App Maintenance", path: "/services/app-development/app-maintenance", icon: ICONS.settings }
+    //     { name: "App Maintenance", path: "/app-development/app-maintenance", icon: ICONS.settings }
     //   ]
     // }
   ],
@@ -113,7 +115,7 @@ const NAV_DATA = {
     {
       title: "LifeOS+",
       path: "/products/lifeos-plus",
-      status: "Live",
+      status: "In Progress",
       iconPath: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", // Clock/Time icon for productivity
       description: "A comprehensive productivity ecosystem that helps you organize your entire life.",
       subItems: [
@@ -125,39 +127,29 @@ const NAV_DATA = {
       ]
     },
     {
-      title: "DataFlow AI",
-      path: "/products/dataflow-ai",
+      title: "Object Detection",
+      path: "/products/object-detection",
       status: "In Progress",
       iconPath: "M13 10V3L4 14h7v7l9-11h-7z", // Lightning/Energy icon for AI/Data
-      description: "An intelligent data analysis platform that transforms raw data into actionable insights.",
+      description: "Real-time object detection using image and video and tracking for various applications.",
       subItems: [
-        { name: "AI-Powered Analytics", path: "", icon: ICONS.rocket },
-        { name: "Custom Dashboards", path: "", icon: ICONS.design },
-        { name: "Real-time Processing", path: "", icon: ICONS.cloud },
-        { name: "Predictive Models", path: "", icon: ICONS.chart },
+        { name: "Object Detection", path: "", icon: ICONS.rocket },
+        { name: "Object Tracking", path: "", icon: ICONS.design },
+        { name: "Image Classification", path: "", icon: ICONS.cloud },
+        { name: "Image Segmentation", path: "", icon: ICONS.chart },
       ]
     },
-    {
-      title: "TeamSync",
-      path: "/products/teamsync",
-      status: "In Progress",
-      iconPath: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z", // Users/Team icon
-      description: "A modern collaboration platform designed for remote teams.",
-      subItems: [
-        { name: "Team Chat", path: "", icon: ICONS.mobile },
-        { name: "Project Management", path: "", icon: ICONS.settings },
-        { name: "Video Calls", path: "", icon: ICONS.rocket }, // Using rocket as placeholder for video, or maybe render a custom SVG if needed but sticking to ICONS for now
-        { name: "File Sharing", path: "", icon: ICONS.cloud },
-        { name: "Integrations", path: "", icon: ICONS.code },
-      ]
-    }
   ]
 };
 
 // ==========================================
 // 3. Graphic Component (CSS Illustrations)
 // ==========================================
-const ServiceIllustration = ({ type }) => {
+interface ServiceIllustrationProps {
+  type: string;
+}
+
+const ServiceIllustration = ({ type }: ServiceIllustrationProps) => {
   if (type.includes("CRM")) {
     return (
       <div className="relative w-full h-full bg-blue-50 dark:bg-[#1a1a2e] flex items-center justify-center p-6">
@@ -245,13 +237,13 @@ export default function Navbar() {
   // const isDarkMode = theme === 'dark';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [hoveredService, setHoveredService] = useState(NAV_DATA.services[0]);
   const [hoveredProduct, setHoveredProduct] = useState(NAV_DATA.products[0]);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [mobileActiveService, setMobileActiveService] = useState(null);
-  const [mobileActiveProduct, setMobileActiveProduct] = useState(null);
+  const [mobileActiveService, setMobileActiveService] = useState<number | null>(null);
+  const [mobileActiveProduct, setMobileActiveProduct] = useState<number | null>(null);
   const [isMenuAnimating, setIsMenuAnimating] = useState(false);
   const scrollPositionRef = useRef(0);
 
@@ -273,7 +265,7 @@ export default function Navbar() {
     }
   };
 
-  const handleMobileServiceClick = (index) => {
+  const handleMobileServiceClick = (index: number) => {
     if (mobileActiveService === index) {
       setMobileActiveService(null);
     } else {
@@ -281,7 +273,7 @@ export default function Navbar() {
     }
   };
 
-  const handleMobileProductClick = (index) => {
+  const handleMobileProductClick = (index: number) => {
     if (mobileActiveProduct === index) {
       setMobileActiveProduct(null);
     } else {
@@ -289,10 +281,10 @@ export default function Navbar() {
     }
   };
 
-  const handleDropdownEnter = (name) => setActiveDropdown(name);
+  const handleDropdownEnter = (name: string) => setActiveDropdown(name);
   const handleDropdownLeave = () => setActiveDropdown(null);
-  const handleServiceHover = (service) => setHoveredService(service);
-  const handleProductHover = (product) => setHoveredProduct(product);
+  const handleServiceHover = (service: typeof NAV_DATA.services[0]) => setHoveredService(service);
+  const handleProductHover = (product: typeof NAV_DATA.products[0]) => setHoveredProduct(product);
 
   const closeAllMenus = () => {
     setActiveDropdown(null);
@@ -373,12 +365,16 @@ export default function Navbar() {
               onMouseEnter={() => handleDropdownEnter("services")}
               onMouseLeave={handleDropdownLeave}
             >
-              <button className={`flex items-center text-[18px] space-x-1 font-semibold px-3 py-6 focus:outline-none transition-colors hover:text-[var(--accent-primary)] text-[var(--text-primary)]`}>
+              <Link 
+                href={buildUrl('/services')}
+                onClick={closeAllMenus}
+                className={`flex items-center text-[18px] space-x-1 font-semibold px-3 py-6 focus:outline-none transition-colors hover:text-[var(--accent-primary)] text-[var(--text-primary)]`}
+              >
                 <span>Services</span>
                 <svg className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'services' ? 'rotate-180 text-[var(--accent-primary)]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
 
               <div
                 className={`absolute top-full left-1/3 transform -translate-x-1/3 w-[1000px] max-w-[750px] rounded-xl shadow-2xl overflow-hidden transition-all duration-300 origin-top z-50 bg-[var(--bg-secondary)] border border-[var(--border-secondary)] backdrop-blur-lg ${activeDropdown === "services"
@@ -466,12 +462,16 @@ export default function Navbar() {
               onMouseEnter={() => handleDropdownEnter("products")}
               onMouseLeave={handleDropdownLeave}
             >
-              <button className={`flex items-center text-[18px] space-x-1 font-semibold px-3 py-6 focus:outline-none transition-colors hover:text-[var(--accent-primary)] text-[var(--text-primary)]`}>
+              <Link 
+                href={buildUrl('/products')}
+                onClick={closeAllMenus}
+                className={`flex items-center text-[18px] space-x-1 font-semibold px-3 py-6 focus:outline-none transition-colors hover:text-[var(--accent-primary)] text-[var(--text-primary)]`}
+              >
                 <span>Products</span>
                 <svg className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === 'products' ? 'rotate-180 text-[var(--accent-primary)]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </Link>
 
               <div
                 className={`absolute top-full left-1/3 transform -translate-x-1/3 w-[1000px] max-w-[750px] rounded-xl shadow-2xl overflow-hidden transition-all duration-300 origin-top z-50 bg-[var(--bg-secondary)] border border-[var(--border-secondary)] backdrop-blur-lg ${activeDropdown === "products"

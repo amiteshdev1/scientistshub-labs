@@ -7,12 +7,19 @@ export default function Footer() {
 
   return (
     <footer className="theme-bg-secondary border-t theme-border-primary py-12">
-      <div className="container mx-auto px-4">
+      <div className="container max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <div className="text-2xl font-bold theme-text-primary mb-4">
-              ScientistsHub Labs
+            <div className="flex items-center gap-3 mb-4">
+              <img
+                src="/scientistshub-labs-logo.png"
+                alt="ScientistsHub Labs Logo"
+                className="h-10 w-auto object-contain rounded-lg"
+              />
+              <div className="text-2xl font-bold theme-text-primary">
+                ScientistsHub Labs
+              </div>
             </div>
             <p className="theme-text-secondary text-sm mb-6 leading-relaxed">
               Innovation and product studio building cutting-edge solutions. We transform ideas into reality through advanced technology and creative engineering.
@@ -51,17 +58,17 @@ export default function Footer() {
             <h3 className="font-bold theme-text-primary mb-4">Services</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/development" className="theme-text-secondary hover:text-brand-secondary transition-colors">
-                  Web Development
+                <Link href="/development" className="theme-text-secondary hover:text-brand-secondary transition-colors">
+                  Web & App Development
                 </Link>
               </li>
               <li>
-                <Link href="/services/software" className="theme-text-secondary hover:text-brand-secondary transition-colors">
+                <Link href="/software" className="theme-text-secondary hover:text-brand-secondary transition-colors">
                   Software Services
                 </Link>
               </li>
               <li>
-                <Link href="/services/digital-marketing" className="theme-text-secondary hover:text-brand-secondary transition-colors">
+                <Link href="/digital-marketing" className="theme-text-secondary hover:text-brand-secondary transition-colors">
                   Digital Marketing
                 </Link>
               </li>
@@ -92,16 +99,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t theme-border-primary pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t theme-border-primary pt-8 flex flex-col md:flex-row justify-center items-center gap-2">
           <div className="theme-text-secondary text-sm">
-            © {currentYear} ScientistsHub Labs. All Rights Reserved. | Engineered by ScientistsHub Labs
+            © {currentYear} ScientistsHub Labs.
+An innovation initiative by ScientistsHub
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-2">
             <Link href="/privacy" className="theme-text-secondary hover:text-brand-secondary text-sm transition-colors">
-              Privacy Policy
+            |   Privacy Policy
             </Link>
             <Link href="/terms-condition" className="theme-text-secondary hover:text-brand-secondary text-sm transition-colors">
-              Terms & Conditions
+              |   Terms & Conditions
             </Link>
           </div>
         </div>
