@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ThemeSwitcher from "@/Components/ThemeSwitcher";
 import { useTheme } from "next-themes";
 import { buildUrl } from '../lib/urlUtils';
@@ -337,11 +338,13 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <Link href={buildUrl('/')} onClick={closeAllMenus}>
               <div className="flex items-center gap-2">
-                <div className="h-[45px] w-auto flex items-center justify-center">
-                  <img
+                <div className="relative h-[45px] w-[45px] flex items-center justify-center">
+                  <Image
                     src="/scientistshub-labs-logo.png"
                     alt="ScientistsHub Labs Logo"
-                    className="h-full w-auto object-contain drop-shadow-md rounded-xl"
+                    fill
+                    className="object-contain drop-shadow-md rounded-xl"
+                    priority
                   />
                 </div>
                 <span className="font-bold text-xl tracking-tight hidden sm:block text-[var(--text-primary)]">ScientistsHub Labs</span>
@@ -610,7 +613,9 @@ export default function Navbar() {
             {/* Mobile Header */}
             <div className="flex items-center justify-between p-5 border-b border-[var(--border-primary)]">
               <div className="flex items-center space-x-2">
-                <img src="/scientistshub-labs-logo.png" alt="Logo" className="h-10 w-auto rounded-lg" />
+                <div className="relative h-10 w-10">
+                <Image src="/scientistshub-labs-logo.png" alt="Logo" fill className="object-contain rounded-lg" />
+              </div>
               </div>
               <button onClick={toggleMenu} aria-label="Close menu" className="transition-colors text-[var(--text-muted)] hover:text-[var(--accent-danger)]">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
