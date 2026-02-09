@@ -805,6 +805,12 @@ export default function Navbar() {
                     icon: <Facebook className="w-5 h-5 fill-current" />,
                     className: 'bg-[#1877F2] hover:opacity-90'
                   },
+                   {
+                    name: 'Instagram',
+                    url: 'https://instagram.com/scientistshublabs',
+                    icon: <Instagram className="w-5 h-5" />,
+                    className: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] hover:opacity-90'
+                  },
                   {
                     name: 'X (Twitter)',
                     url: 'https://x.com/scientistshubl',
@@ -825,12 +831,7 @@ export default function Navbar() {
                     ),
                     className: 'bg-[#FF0000] hover:opacity-90'
                   },
-                  {
-                    name: 'Instagram',
-                    url: 'https://instagram.com/scientistshublabs',
-                    icon: <Instagram className="w-5 h-5" />,
-                    className: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] hover:opacity-90'
-                  },
+                 
                   {
                     name: 'LinkedIn',
                     url: 'https://linkedin.com/company/scientistshublabs',
