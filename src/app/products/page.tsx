@@ -17,27 +17,27 @@ export default function ProductsPage() {
   const products = [
     {
       name: 'LifeOS+',
-      tagline: 'Your entire life, organized.',
-      description: 'A comprehensive productivity ecosystem that helps you organize your entire life. From task management to habit building, everything you need is here.',
-      category: 'Productivity',
-      status: 'In Progress',
+      tagline: 'Integrated Productivity Architecture.',
+      description: 'A modular productivity ecosystem built on scalable architecture. Features intelligent task orchestration and data-driven habit tracking algorithms.',
+      category: 'System Architecture',
+      status: 'In Development',
       icon: <Clock className="w-12 h-12" />,
       link: '/products/lifeos-plus',
       color: 'text-blue-500',
       bg: 'bg-blue-50 dark:bg-blue-900/20',
-      features: ['Task Management', 'Goal Tracking', 'Habit Builder', 'Smart Reminders']
+      features: ['Algorithmic Task Management', 'Data-Driven Insights', 'Modular Design', 'Real-time Sync']
     },
     {
-      name: 'Object Detection',
-      tagline: 'Real-time visual intelligence.',
-      description: 'Advanced object detection and tracking specifically designed for real-time video analysis and image processing applications.',
-      category: 'AI & Vision',
-      status: 'In Progress',
+      name: 'VisionX',
+      tagline: 'Low-Latency Computer Vision.',
+      description: 'High-throughput object detection specifically engineered for real-time video stream analysis and edge computing applications.',
+      category: 'Computer Vision',
+      status: 'In Development',
       icon: <Scan className="w-12 h-12" />,
       link: '/products/object-detection',
       color: 'text-purple-500', 
       bg: 'bg-purple-50 dark:bg-purple-900/20',
-      features: ['Object Detection', 'Object Tracking', 'Image Classification', 'Segmentation']
+      features: ['YOLOv8 Implementation', 'Edge Optimization', 'Real-time Inference', 'Multi-stream Processing']
     }
   ];
 

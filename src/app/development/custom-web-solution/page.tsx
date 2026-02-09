@@ -116,7 +116,7 @@ export default function CustomWebSolutionPage() {
               Ready to Build Your Custom Solution?
             </h2>
             <p className="theme-text-secondary mb-6">
-              Let's discuss how we can bring your vision to life with cutting-edge technology.
+              Let's discuss how we can bring your vision to life with advanced technology.
             </p>
             <Link
               href="/request-a-quote"

@@ -7,23 +7,23 @@ export default function AboutPage() {
   const values = [
     {
       icon: <Target className="w-8 h-8" />,
-      title: 'Innovation',
-      description: 'We push boundaries and explore new technologies to deliver cutting-edge solutions.'
+      title: 'Scientific Method',
+      description: 'We approach every problem with a hypothesis-driven mindset, validating solutions through rigorous testing.'
     },
     {
       icon: <Heart className="w-8 h-8" />,
-      title: 'Excellence',
-      description: 'We maintain the highest standards in everything we do, from code quality to customer service.'
+      title: 'Engineering Rigor',
+      description: 'We maintain uncompromising standards in code quality, system architecture, and security.'
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: 'Collaboration',
-      description: 'We work closely with our clients as partners to achieve shared success.'
+      title: 'Collaborative Research',
+      description: 'We partner with organizations to explore and engineer solutions to complex technical challenges.'
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: 'Agility',
-      description: 'We adapt quickly to changing requirements and market conditions.'
+      title: 'Adaptive Systems',
+      description: 'We build systems that are designed to evolve and scale with changing business landscapes.'
     }
   ];
 
@@ -37,9 +37,9 @@ export default function AboutPage() {
               About ScientistsHub Labs
             </h1>
             <p className="text-lg sm:text-xl theme-text-secondary leading-relaxed">
-              We are a team of passionate engineers, designers, and innovators dedicated to building 
-              the future of technology. Our mission is to transform bold ideas into reality through 
-              advanced engineering and creative problem-solving.
+              We are a collective of engineers and researchers dedicated to building 
+              intelligent software infrastructure. Our mission is to engineer scalable systems 
+              that solve fundamental problems through technology and research.
             </p>
           </div>
         </div>
@@ -55,9 +55,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl font-bold theme-text-primary mb-4">Our Mission</h2>
               <p className="theme-text-secondary leading-relaxed">
-                To empower businesses and individuals with innovative technology solutions that 
-                drive growth, efficiency, and transformation. We believe in making advanced 
-                technology accessible and impactful for everyone.
+                To engineer robust, scalable software systems that empower organizations 
+                to leverage the full potential of digital transformation. We believe in 
+                the power of code to solve meaningful problems.
               </p>
             </div>
 
@@ -67,9 +67,9 @@ export default function AboutPage() {
               </div>
               <h2 className="text-2xl font-bold theme-text-primary mb-4">Our Vision</h2>
               <p className="theme-text-secondary leading-relaxed">
-                To be the world's leading innovation studio, recognized for creating groundbreaking 
-                products that shape the future of technology and improve lives globally. We envision 
-                a world where technology seamlessly enhances human potential.
+                To be a globally recognized engineering studio known for technical excellence 
+                and research-driven innovation. We envision a future built on intelligent, 
+                reliable, and efficient software systems.
               </p>
             </div>
           </div>
@@ -81,10 +81,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold theme-text-primary mb-4">
-              Our Core Values
+              Core Engineering Principles
             </h2>
             <p className="text-lg theme-text-secondary max-w-2xl mx-auto">
-              The principles that guide everything we do
+              The axioms that guide our development process
             </p>
           </div>
 

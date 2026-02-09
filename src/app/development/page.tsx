@@ -64,7 +64,7 @@ export default function DevelopmentServicesPage() {
       <HeroWithDashboard
         subtitle="Technical Excellence"
         title="Development Services"
-        description="Build robust, scalable applications with our Web Development expertise. From web to mobile, APIs to custom solutions—we deliver cutting-edge technology tailored to your business needs."
+        description="Build robust, scalable applications with our Web Development expertise. From web to mobile, APIs to custom solutions—we deliver advanced technology tailored to your business needs."
         primaryCTA={{ text: 'Start Your Project', href: '/request-a-quote' }}
         secondaryCTA={{ text: 'View Services', href: '#services' }}
         dashboardComponent={<DevDashboard />}

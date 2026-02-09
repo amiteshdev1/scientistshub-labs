@@ -38,10 +38,10 @@ export default function ServicesPage() {
       color: 'text-purple-500',
       bg: 'bg-purple-50 dark:bg-purple-900/20',
       features: [
-        { name: 'Web Development', icon: <Globe className="w-4 h-4" /> },
-        { name: 'Custom Web Solution', icon: <Layout className="w-4 h-4" /> },
-        { name: 'API Integration', icon: <Database className="w-4 h-4" /> },
-        { name: 'App Development', icon: <Smartphone className="w-4 h-4" /> }
+        { name: 'Full-Stack Development', icon: <Globe className="w-4 h-4" /> },
+        { name: 'Cloud Infrastructure', icon: <Layout className="w-4 h-4" /> },
+        { name: 'API Design', icon: <Database className="w-4 h-4" /> },
+        { name: 'Native Mobile Apps', icon: <Smartphone className="w-4 h-4" /> }
       ]
     },
     {
