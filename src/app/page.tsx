@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { ArrowRight, Zap, Target, Shield, Code, Sparkles, Database, TrendingUp, Palette, Rocket, Clock, Scan } from 'lucide-react';
 import HeroWithDashboard from '@/Components/HeroWithDashboard';
-import HomeDashboard from '@/Components/dashboards/HomeDashboard';
+
 
 export default function HomePage() {
   const { theme } = useTheme();
@@ -104,7 +104,19 @@ export default function HomePage() {
         description="Scientistshub Labs is a premier product development studio. We transform ambitious ideas into powerful digital realities through expert engineering, design, and strategy."
         primaryCTA={{ text: 'Start Your Project', href: '/request-a-quote' }}
         secondaryCTA={{ text: 'Our Work', href: '/products' }}
-        dashboardComponent={<HomeDashboard />}
+        dashboardComponent={
+          <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-800/50 bg-black/50 backdrop-blur">
+            <video
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/scientistshub-labs-intro-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+        }
       />
 
       {/* Services Section */}
