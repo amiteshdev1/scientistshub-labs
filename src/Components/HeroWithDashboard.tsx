@@ -27,7 +27,7 @@ export default function HeroWithDashboard({
   dashboardComponent,
 }: HeroWithDashboardProps) {
   return (
-    <section className="relative py-20 lg:py-28 min-h-[80vh] flex items-center theme-bg-primary overflow-hidden">
+    <section className="relative py-20 lg:py-28 flex items-center theme-bg-primary overflow-hidden">
       {/* Background gradient effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#2d65bc]/5 via-transparent to-transparent pointer-events-none" />
       
