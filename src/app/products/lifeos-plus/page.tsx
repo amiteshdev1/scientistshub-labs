@@ -5,7 +5,7 @@ import FeatureList from '@/Components/products/FeatureList';
 import UseCaseSection from '@/Components/products/UseCaseSection';
 import HowItWorksSection from '@/Components/products/HowItWorksSection';
 import CTASection from '@/Components/products/CTASection';
-import lifeOSPlusData from '@/data/products/lifeos-plus';
+import lifeOSPlusData from '@/data/products/lifeosplus';
 
 // SEO Metadata
 export const metadata: Metadata = {

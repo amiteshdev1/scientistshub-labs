@@ -5,7 +5,7 @@ import Image from "next/image";
 import ThemeSwitcher from "@/Components/ThemeSwitcher";
 import { useTheme } from "next-themes";
 import { buildUrl } from '../lib/urlUtils';
-// import { path } from "framer-motion/client";
+import { Facebook, Instagram, Youtube, Linkedin } from 'lucide-react';
 
 // ==========================================
 // 1. Icon Registry
@@ -33,8 +33,8 @@ const NAV_DATA = {
       iconPath: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z",
       description: "Streamline your customer relationships and boost sales efficiency.",
       subItems: [
-        { name: "Real Estate CRM", path: "/software/real-estate-crm", icon: ICONS.settings },
-        { name: "Hospital CRM", path: "/software/hospital-crm", icon: ICONS.cloud },
+        // { name: "Real Estate CRM", path: "/software/real-estate-crm", icon: ICONS.settings },
+        // { name: "Hospital CRM", path: "/software/hospital-crm", icon: ICONS.cloud },
         { name: "Custom Software", path: "/software/custom-software", icon: ICONS.cloud },
         // { name: "Real Estate CRM", path: "/crm-services/real-estate-crm", icon: ICONS.settings },
         // { name: "Hospital CRM", path: "/crm-services/hospital-crm", icon: ICONS.cloud },
@@ -115,7 +115,7 @@ const NAV_DATA = {
   products: [
     {
       title: "LifeOS+",
-      path: "/products/lifeos-plus",
+      path: "/products/lifeosplus",
       status: "In Progress",
       iconPath: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", // Clock/Time icon for productivity
       description: "A comprehensive productivity ecosystem that helps you organize your entire life.",
@@ -590,7 +590,7 @@ export default function Navbar() {
 
           {/* ===== Right Actions (Theme Switcher) ===== */}
           <div className="flex items-center space-x-4">
-            <div className="hidden md:flex items-center space-x-4">
+            <div className=" items-center space-x-4">
               <ThemeSwitcher />
             </div>
           </div>
@@ -608,7 +608,7 @@ export default function Navbar() {
             onClick={toggleMenu}
           ></div>
 
-          <div className={`fixed top-0 left-0 h-full w-[85%] max-w-sm z-50 shadow-2xl transform transition-transform duration-300 ease-in-out overflow-y-auto ${isMenuAnimating ? 'translate-x-0' : '-translate-x-full'
+          <div className={`fixed top-0 left-0 h-full w-[85%] max-w-sm z-50 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isMenuAnimating ? 'translate-x-0' : '-translate-x-full'
             } bg-[var(--bg-secondary)] border-r border-[var(--border-primary)]`}>
             {/* Mobile Header */}
             <div className="flex items-center justify-between p-5 border-b border-[var(--border-primary)]">
@@ -625,7 +625,7 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Links */}
-            <div className="py-4 px-2 space-y-1">
+            <div className="py-4 px-2 space-y-1 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--border-secondary)]">
               <Link href={buildUrl('/')} onClick={closeAllMenus} className="block px-4 py-3 rounded-lg font-semibold transition-colors text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent-primary)]">
                 Home
               </Link>
@@ -788,10 +788,78 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Footer */}
-            <div className="relative bottom-0 left-0 right-0 p-6 border-t bg-[var(--bg-tertiary)] border-[var(--border-primary)]">
-              <div className="flex items-center justify-between mb-4">
-                <span className="font-semibold text-[var(--text-primary)]">Theme</span>
+
+            
+            {/* Mobile Footer */}
+            <div className="p-6 border-t border-[var(--border-primary)] bg-[var(--bg-tertiary)]">
+              {/* <div className="flex items-center justify-between mb-6">
+                <span className="font-semibold text-[var(--text-primary)]">Appearance</span>
                 <ThemeSwitcher />
+              </div> */}
+              
+              <div className="flex items-center justify-center space-x-4 mb-6">
+                {[
+                  {
+                    name: 'Facebook',
+                    url: 'https://facebook.com/scientistshublabs',
+                    icon: <Facebook className="w-5 h-5 fill-current" />,
+                    className: 'bg-[#1877F2] hover:opacity-90'
+                  },
+                   {
+                    name: 'Instagram',
+                    url: 'https://instagram.com/scientistshublabs',
+                    icon: <Instagram className="w-5 h-5" />,
+                    className: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] hover:opacity-90'
+                  },
+                  {
+                    name: 'X (Twitter)',
+                    url: 'https://x.com/scientistshubl',
+                    icon: (
+                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                    ),
+                    className: 'bg-black hover:opacity-90 border border-gray-800'
+                  },
+                  {
+                    name: 'YouTube',
+                    url: 'https://youtube.com/@scientistshubhq',
+                    icon: (
+                      <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                      </svg>
+                    ),
+                    className: 'bg-[#FF0000] hover:opacity-90'
+                  },
+                 
+                  {
+                    name: 'LinkedIn',
+                    url: 'https://linkedin.com/company/scientistshublabs',
+                    icon: <Linkedin className="w-5 h-5 fill-current" />,
+                    className: 'bg-[#0077B5] hover:opacity-90'
+                  }
+                ].map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`w-10 h-10 flex items-center justify-center rounded-lg text-white transition-all duration-300 shadow-sm hover:scale-110 ${social.className}`}
+                    aria-label={social.name}
+                    title={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+              
+              <div className="text-center border-t border-[var(--border-primary)] pt-4">
+                <p className="text-xs text-[var(--text-muted)]">
+                  &copy; {new Date().getFullYear()} ScientistsHub Labs.
+                </p>
+                <p className="text-[10px] text-[var(--text-muted)] mt-1 uppercase tracking-wider font-semibold">
+                  Research & Engineering Studio
+                </p>
               </div>
             </div>
           </div>

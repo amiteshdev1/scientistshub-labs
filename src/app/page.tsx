@@ -53,7 +53,7 @@ export default function HomePage() {
       title: 'LifeOS+',
       tagline: 'Your entire life, organized.',
       description: 'A comprehensive productivity ecosystem that helps you organize your entire life.',
-      link: '/products/lifeos-plus',
+      link: '/products/lifeosplus',
       icon: <Clock className="w-8 h-8" />,
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       color: 'text-blue-500',
@@ -74,23 +74,23 @@ export default function HomePage() {
   const features = [
     {
       icon: <Rocket className="w-8 h-8" />,
-      title: 'Innovation First',
-      description: 'Cutting-edge solutions built with the latest technologies.'
+      title: 'Research First',
+      description: 'Evidence-based development methodologies rooted in engineering rigor.'
     },
     {
       icon: <Zap className="w-8 h-8" />,
-      title: 'Rapid Delivery',
-      description: 'Agile development process ensuring fast time-to-market.'
+      title: 'High Availability',
+      description: 'Systems designed for maximum uptime and fault tolerance.'
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: 'Enterprise Security',
-      description: 'Bank-grade security built into every solution.'
+      title: 'Secure Architecture',
+      description: 'Security-by-design approach for enterprise-grade protection.'
     },
     {
       icon: <Target className="w-8 h-8" />,
-      title: 'Results Driven',
-      description: 'We focus on metrics that matter to your business growth.'
+      title: 'Scalable Impact',
+      description: 'Solutions engineered to grow seamlessly with your business.'
     }
   ];
 
@@ -133,10 +133,10 @@ export default function HomePage() {
               Our Expertise
             </span>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-secondary)]">
-              Comprehensive Digital Services
+              Primary Research Areas
             </h2>
             <p className="text-[var(--text-secondary)] text-xl leading-relaxed">
-              End-to-end solutions designed to help your business thrive in the modern digital landscape.
+              We focus on building robust, scalable systems across key engineering domains.
             </p>
           </div>
 
@@ -183,7 +183,7 @@ export default function HomePage() {
                 Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent-primary)] to-[var(--accent-secondary)]">Products</span>
               </h2>
               <p className="text-[var(--text-secondary)] text-xl leading-relaxed">
-                Explore our suite of innovative internal products designed to solve complex real-world problems with elegance.
+                Explore our internal products, built to solve complex problems through systems thinking and advanced engineering.
               </p>
             </div>
            

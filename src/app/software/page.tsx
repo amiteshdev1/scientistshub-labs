@@ -7,34 +7,34 @@ import SoftwareDashboard from '@/Components/dashboards/SoftwareDashboard';
 
 export default function SoftwareServicesPage() {
   const services = [
-    {
-      icon: <Building2 className="w-8 h-8" />,
-      title: 'Real Estate CRM',
-      slug: 'real-estate-crm',
-      description: 'Comprehensive CRM solution designed specifically for real estate professionals to manage leads and close deals faster.',
-      bg: 'bg-blue-50 dark:bg-blue-900/20',
-      color: 'text-blue-500',
-      features: [
-        'Lead Management',
-        'Property Listings',
-        'Client Portal',
-        'Automated Follow-ups'
-      ]
-    },
-    {
-      icon: <Hospital className="w-8 h-8" />,
-      title: 'Hospital CRM',
-      slug: 'hospital-crm',
-      description: 'Streamline hospital operations with our advanced Hospital CRM software. Manage patient records, appointments, billing, and inventory—all in one secure platform.',
-      bg: 'bg-teal-50 dark:bg-teal-900/20',
-      color: 'text-teal-500',
-      features: [
-        'Patient Records',
-        'Appointment Scheduling',
-        'Billing & Insurance',
-        'Inventory Management'
-      ]
-    },
+    // {
+    //   icon: <Building2 className="w-8 h-8" />,
+    //   title: 'Real Estate CRM',
+    //   slug: 'real-estate-crm',
+    //   description: 'Comprehensive CRM solution designed specifically for real estate professionals to manage leads and close deals faster.',
+    //   bg: 'bg-blue-50 dark:bg-blue-900/20',
+    //   color: 'text-blue-500',
+    //   features: [
+    //     'Lead Management',
+    //     'Property Listings',
+    //     'Client Portal',
+    //     'Automated Follow-ups'
+    //   ]
+    // },
+    // {
+    //   icon: <Hospital className="w-8 h-8" />,
+    //   title: 'Hospital CRM',
+    //   slug: 'hospital-crm',
+    //   description: 'Streamline hospital operations with our advanced Hospital CRM software. Manage patient records, appointments, billing, and inventory—all in one secure platform.',
+    //   bg: 'bg-teal-50 dark:bg-teal-900/20',
+    //   color: 'text-teal-500',
+    //   features: [
+    //     'Patient Records',
+    //     'Appointment Scheduling',
+    //     'Billing & Insurance',
+    //     'Inventory Management'
+    //   ]
+    // },
     {
       icon: <Zap className="w-8 h-8" />,
       title: 'Workflow Automation',
@@ -72,7 +72,7 @@ export default function SoftwareServicesPage() {
       <HeroWithDashboard
         subtitle="Enterprise Solutions"
         title="Software Solutions"
-        description="Transform your business operations with enterprise-grade software solutions. From CRM systems to workflow automation, hospital management to custom applications—we build scalable platforms that drive efficiency."
+        description="We build custom software solutions tailored to your unique business needs. From workflow automation to enterprise applications, our team delivers scalable, high-performance platforms that drive real results."
         primaryCTA={{ text: 'Request Demo', href: '/request-a-quote' }}
         secondaryCTA={{ text: 'View Solutions', href: '#services' }}
         dashboardComponent={<SoftwareDashboard />}
