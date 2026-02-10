@@ -1,123 +1,135 @@
-# ScientistsHub Labs - Next.js Application
+# ScientistsHub Labs - Monorepo
 
-A modern, full-stack web application built with Next.js 15, featuring a comprehensive service portfolio, dynamic blog system, and product showcase.
+ScientistsHub Labs is a cutting-edge research and product engineering studio. This repository contains the source code for our main web platform and associated backend services, organized as a monorepo using [Turborepo](https://turbo.build/).
+
+## 🏗️ Architecture
+
+This project is structured as a monorepo with the following workspaces:
+
+- **`apps/frontend`**: Next.js 15 application (App Router) for the main website.
+- **`apps/backend`**: Express.js server for handling API requests (contact forms, quotes) and email services via Nodemailer.
+- **`packages/`**: Shared configurations (ESLint, TypeScript, Tailwind).
 
 ## 🚀 Features
 
-- ✨ **29+ Pages** - Complete website with services, blog, products, and more
-- 🎨 **Dark/Light Theme** - Seamless theme switching with system preference detection
-- 📧 **EmailJS Integration** - Functional contact and quote request forms
-- 📱 **Fully Responsive** - Mobile-first design that works on all devices
-- 🔍 **SEO Optimized** - Meta tags, OpenGraph, and semantic HTML
-- ⚡ **Next.js 15** - Latest App Router with Server Components
-- 🎯 **TypeScript** - Full type safety across the application
-- 🎭 **Framer Motion** - Smooth animations and transitions
-- 📊 **Dynamic Routes** - Blog posts and products with static generation
+- **Monorepo Architecture** - Efficient build system with Turborepo.
+- **Next.js 15 Frontend** - Server Components, App Router, and dynamic routing.
+- **Express.js Backend** - Robust API handling and email dispatch services.
+- **Email Integration** - Server-side email sending using Nodemailer (Gmail SMTP).
+- **Type Safety** - Full TypeScript support across frontend and backend.
+- **Modern Styling** - Tailwind CSS v4 with custom design system and dark mode support.
+- **Performance** - Optimized builds and asset delivery.
+
+## 🛠️ Tech Stack
+
+### Frontend (`apps/frontend`)
+
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4, Framer Motion
+- **State Management**: React Context (Theme, Auth)
+
+### Backend (`apps/backend`)
+
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Language**: TypeScript
+- **Email**: Nodemailer
+- **Security**: Helmet, CORS
+
+### Tooling
+
+- **Build System**: Turborepo
+- **Package Manager**: npm
+- **Linting**: ESLint
 
 ## 🏁 Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- npm or yarn
+- npm
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
-```bash
-git clone https://github.com/yourusername/scientistshub-labs.git
-cd scientistshub-labs
-```
+    ```bash
+    git clone https://github.com/yourusername/scientistshub-labs.git
+    cd scientistshub-labs
+    ```
 
-1. Install dependencies:
+2. **Install dependencies (from root):**
 
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
 
-1. Create `.env.local` file:
+3. **Environment Setup:**
 
-```bash
-cp .env.example .env.local
-```
+    - **Frontend**: Create `apps/frontend/.env.local`
+    - **Backend**: Create `apps/backend/.env`
 
-1. Configure environment variables (see Environment Variables section)
+    *See [Environment Variables](#-environment-variables) section below for details.*
 
-2. Run the development server:
+4. **Run Development Server:**
 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
-1. Open [http://localhost:3000](http://localhost:3000) in your browser
+    This command uses Turbo to start both the frontend (localhost:3000) and backend (localhost:4000) concurrently.
 
 ## 🔐 Environment Variables
 
-Create a `.env.local` file in the root directory:
+### Frontend (`apps/frontend/.env.local`)
 
-```bash
-# API Configuration
-NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
+NEXT_PUBLIC_APP_BASE_URL=http://localhost:3000
+```
 
-# EmailJS Configuration
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=your_contact_template_id
-NEXT_PUBLIC_EMAILJS_QUOTE_TEMPLATE_ID=your_quote_template_id
+### Backend (`apps/backend/.env`)
+
+```env
+PORT=4000
+NODE_ENV=development
+
+# SMTP Configuration (Gmail Example)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+CONTACT_EMAIL_TO=contact@scientistshub.com
 ```
 
 ## 📜 Available Scripts
 
-```bash
-# Development
-npm run dev          # Start development server
+Run these commands from the **root directory**:
 
-# Production
-npm run build        # Build for production
-npm start            # Start production server
+- `npm run dev`: Start all apps in development mode.
+- `npm run build`: Build all apps for production.
+- `npm run lint`: Lint all apps and packages.
+- `npm run clean`: Clean up `node_modules` and `.turbo` caches.
 
-# Linting
-npm run lint         # Run ESLint
+## 📂 Project Structure
+
 ```
-
-## 📧 EmailJS Setup
-
-1. Visit [EmailJS](https://www.emailjs.com/) and create a free account
-2. Add an email service (Gmail, Outlook, etc.)
-3. Create two email templates (contact & quote)
-4. Copy credentials to `.env.local`
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Visit [Vercel](https://vercel.com)
-3. Import your repository
-4. Add environment variables
-5. Deploy!
-
-## 🛠️ Tech Stack
-
-- **Next.js 15.1.6** - React framework
-- **React 19.2.4** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS 4.1** - Styling
-- **next-themes** - Theme management
-- **Framer Motion** - Animations
-- **@emailjs/browser** - Email sending
-- **Axios** - HTTP client
-
-## 📄 Pages
-
-- 10 Core Pages (Home, About, Products, Blogs, Contact, etc.)
-- 17 Service Pages (Development, Software, Marketing)
-- Dynamic Routes (Blog & Product detail pages)
+scientistshub-labs/
+├── apps/
+│   ├── frontend/       # Next.js web application
+│   └── backend/        # Express.js API server
+├── packages/
+│   ├── eslint-config/  # Shared ESLint configurations
+│   ├── typescript-config/ # Shared tsconfig.json
+│   └── ui/             # (Optional) Shared UI components
+├── package.json        # Root script configuration
+└── turbo.json          # Turborepo pipeline configuration
+```
 
 ## 📞 Support
 
-For support, email <contact@scientistshub-labs.com> or visit our [Support Page](http://localhost:3000/support).
+For support, email <[EMAIL_ADDRESS]>.
 
 ---
 
