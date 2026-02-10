@@ -1,0 +1,25 @@
+{
+  "name": "scientistshub-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:labs": "turbo run dev --filter=labs-frontend",
+    "dev:visionx": "turbo run dev --filter=visionx-frontend --filter=visionx-backend",
+    "build": "turbo run build",
+    "build:labs": "turbo run build --filter=labs-frontend",
+    "build:visionx": "turbo run build --filter=visionx-frontend --filter=visionx-backend",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
