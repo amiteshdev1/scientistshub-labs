@@ -53,7 +53,7 @@ export default function HomePage() {
       title: 'LifeOS+',
       tagline: 'Your entire life, organized.',
       description: 'A comprehensive productivity ecosystem that helps you organize your entire life.',
-      link: '/products/lifeos-plus',
+      link: '/products/lifeosplus',
       icon: <Clock className="w-8 h-8" />,
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       color: 'text-blue-500',

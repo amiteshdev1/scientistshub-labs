@@ -33,8 +33,8 @@ const NAV_DATA = {
       iconPath: "M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z",
       description: "Streamline your customer relationships and boost sales efficiency.",
       subItems: [
-        { name: "Real Estate CRM", path: "/software/real-estate-crm", icon: ICONS.settings },
-        { name: "Hospital CRM", path: "/software/hospital-crm", icon: ICONS.cloud },
+        // { name: "Real Estate CRM", path: "/software/real-estate-crm", icon: ICONS.settings },
+        // { name: "Hospital CRM", path: "/software/hospital-crm", icon: ICONS.cloud },
         { name: "Custom Software", path: "/software/custom-software", icon: ICONS.cloud },
         // { name: "Real Estate CRM", path: "/crm-services/real-estate-crm", icon: ICONS.settings },
         // { name: "Hospital CRM", path: "/crm-services/hospital-crm", icon: ICONS.cloud },
@@ -115,7 +115,7 @@ const NAV_DATA = {
   products: [
     {
       title: "LifeOS+",
-      path: "/products/lifeos-plus",
+      path: "/products/lifeosplus",
       status: "In Progress",
       iconPath: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z", // Clock/Time icon for productivity
       description: "A comprehensive productivity ecosystem that helps you organize your entire life.",

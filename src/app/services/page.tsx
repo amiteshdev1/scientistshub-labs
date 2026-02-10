@@ -26,8 +26,10 @@ export default function ServicesPage() {
       color: 'text-blue-500',
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       features: [
-        { name: 'Real Estate CRM', icon: <Database className="w-4 h-4" /> },
-        { name: 'Hospital CRM', icon: <Layout className="w-4 h-4" /> }
+        { name: 'Custom Software', icon: <Layout className="w-4 h-4" /> },
+        // { name: 'Real Estate CRM', icon: <Database className="w-4 h-4" /> },
+        // { name: 'Hospital CRM', icon: <Layout className="w-4 h-4" /> }
+        
       ]
     },
     {

@@ -144,7 +144,7 @@ const lifeOSPlusData: ProductData = {
         title: 'LifeOS+ | Productivity Ecosystem | ScientistsHub Labs',
         description: 'Organize your entire life with LifeOS+. Task management, goal tracking, habit building, and analytics in one integrated productivity system.',
         keywords: ['productivity app', 'task management', 'goal tracking', 'habit builder', 'personal productivity', 'life organization'],
-        canonicalUrl: '/products/lifeos-plus'
+        canonicalUrl: '/products/lifeosplus'
     }
 };
 

@@ -22,7 +22,7 @@ export default function ProductsPage() {
       category: 'System Architecture',
       status: 'In Development',
       icon: <Clock className="w-12 h-12" />,
-      link: '/products/lifeos-plus',
+      link: '/products/lifeosplus',
       color: 'text-blue-500',
       bg: 'bg-blue-50 dark:bg-blue-900/20',
       features: ['Algorithmic Task Management', 'Data-Driven Insights', 'Modular Design', 'Real-time Sync']
