@@ -1,6 +1,3 @@
-'use client';
-
-import { use } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Code2, Layers, CheckCircle } from 'lucide-react';
@@ -12,8 +9,14 @@ interface ProjectPageProps {
   }>;
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = use(params);
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
