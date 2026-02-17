@@ -51,12 +51,12 @@ const NAV_DATA = {
         { name: "Web Development", path: "/development/web-development", icon: ICONS.code },
         // { name: "E-commerce Solutions", path: "/development/e-commerce-solutions", icon: ICONS.chart },
         { name: "Custom Web Solution", path: "/development/custom-web-solution", icon: ICONS.settings },
-        { name: "API & System Integration", path: "/development/api-system-integration", icon: ICONS.cloud },
+        { name: "API & System Integration", path: "/development/api-integration", icon: ICONS.cloud },
         { name: "App Development", path: "/development/app-development", icon: ICONS.mobile },
-        { name: "iOS App Development", path: "/development/ios-app-development", icon: ICONS.mobile },
+        // { name: "iOS App Development", path: "/development/ios-app-development", icon: ICONS.mobile },
         { name: "Android App Development", path: "/development/android-app-development", icon: ICONS.mobile },
-        { name: "App UI/UX Design", path: "/development/apps-ui-ux-design", icon: ICONS.design },
-        { name: "App Maintenance", path: "/development/app-maintenance", icon: ICONS.settings }
+        // { name: "App UI/UX Design", path: "/development/apps-ui-ux-design", icon: ICONS.design },
+        // { name: "App Maintenance", path: "/development/app-maintenance", icon: ICONS.settings }
       ]
     },
      {
