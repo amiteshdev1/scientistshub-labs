@@ -165,7 +165,7 @@ export default function DigitalMarketingPage() {
                 Get Free Consultation <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
                <Link
-                href="/contacts"
+                href="/contact"
                 className="inline-flex items-center justify-center bg-transparent border-2 border-[var(--border-secondary)] hover:border-[var(--text-primary)] text-[var(--text-primary)] font-semibold py-4 px-8 rounded-xl transition-all duration-300 w-full sm:w-auto"
               >
                 Contact Us

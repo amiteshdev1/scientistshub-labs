@@ -224,7 +224,7 @@ export default function TermsPage() {
                      </p>
                      <div className="flex flex-col sm:flex-row justify-center gap-4">
                        <Link 
-                        href="/contacts" 
+                        href="/contact" 
                         className="inline-flex items-center justify-center bg-[var(--accent-primary)] hover:bg-[var(--accent-secondary)] text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg shadow-blue-500/25"
                       >
                         Contact Us <ArrowRight className="ml-2 w-5 h-5" />

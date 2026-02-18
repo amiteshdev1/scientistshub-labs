@@ -23,6 +23,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4
 
 export const sendContactEmail = async (data: ContactFormData): Promise<void> => {
     try {
+        console.log('Sending contact email to:', `${API_BASE_URL}/contact`);
         const response = await fetch(`${API_BASE_URL}/contact`, {
             method: 'POST',
             headers: {

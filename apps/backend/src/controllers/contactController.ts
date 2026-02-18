@@ -1,9 +1,26 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import { sendEmail } from '../services/emailService';
+import Contact from '../models/Contact';
+import Quote from '../models/Quote';
 
 export const submitContactForm = async (req: Request, res: Response) => {
     try {
         const { name, email, subject, message } = req.body;
+
+        // Save to Database
+        if (mongoose.connection.readyState === 1) {
+            const contact = new Contact({
+                name,
+                email,
+                subject,
+                message,
+            });
+            await contact.save();
+        } else {
+            console.warn('⚠️ Database not connected. Contact submission NOT saved.');
+        }
+
         const to = process.env.CONTACT_EMAIL_TO || 'contact@scientistshub.com';
 
         const html = `
@@ -16,15 +33,34 @@ export const submitContactForm = async (req: Request, res: Response) => {
     `;
 
         await sendEmail(to, `New Contact: ${subject}`, html);
-        res.status(200).json({ message: 'Email sent successfully' });
+        res.status(200).json({ message: 'Email sent and data saved successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Failed to send email', error });
+        console.error('Contact form error:', error);
+        res.status(500).json({ message: 'Failed to process request', error });
     }
 };
 
 export const submitQuoteRequest = async (req: Request, res: Response) => {
     try {
         const { name, email, phone, company, service, budget, timeline, description } = req.body;
+
+        // Save to Database
+        if (mongoose.connection.readyState === 1) {
+            const quote = new Quote({
+                name,
+                email,
+                phone,
+                company,
+                service,
+                budget,
+                timeline,
+                description,
+            });
+            await quote.save();
+        } else {
+            console.warn('⚠️ Database not connected. Quote request NOT saved.');
+        }
+
         const to = process.env.CONTACT_EMAIL_TO || 'contact@scientistshub.com';
 
         const html = `
@@ -41,8 +77,9 @@ export const submitQuoteRequest = async (req: Request, res: Response) => {
     `;
 
         await sendEmail(to, `New Quote Request from ${name}`, html);
-        res.status(200).json({ message: 'Quote request sent successfully' });
+        res.status(200).json({ message: 'Quote request sent and data saved successfully' });
     } catch (error) {
-        res.status(500).json({ message: 'Failed to send quote request', error });
+        console.error('Quote request error:', error);
+        res.status(500).json({ message: 'Failed to process request', error });
     }
 };

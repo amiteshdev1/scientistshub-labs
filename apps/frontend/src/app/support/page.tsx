@@ -121,7 +121,7 @@ export default function SupportPage() {
             </div>
 
             <div className="mt-12 text-center">
-              <Link href="/contacts" className="inline-flex items-center text-[var(--accent-primary)] font-medium hover:underline">
+              <Link href="/contact" className="inline-flex items-center text-[var(--accent-primary)] font-medium hover:underline">
                 View all FAQs <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
@@ -140,7 +140,7 @@ export default function SupportPage() {
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                  <Link 
-                  href="/contacts" 
+                  href="/contact" 
                   className="inline-flex items-center justify-center bg-[var(--accent-primary)] hover:bg-opacity-90 text-white font-semibold py-4 px-10 rounded-xl transition-all duration-300 shadow-lg shadow-blue-500/25 transform hover:-translate-y-1 w-full sm:w-auto"
                 >
                   Contact Support <ArrowRight className="ml-2 w-5 h-5" />
