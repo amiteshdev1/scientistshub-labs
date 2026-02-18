@@ -24,7 +24,7 @@ export default function FloatingContact() {
           </div>
           <div className="space-y-3">
             <Link
-              href="/contacts"
+              href="/contact"
               className="flex items-center gap-2 theme-text-secondary hover:text-brand-secondary transition-colors"
             >
               <Mail size={18} />

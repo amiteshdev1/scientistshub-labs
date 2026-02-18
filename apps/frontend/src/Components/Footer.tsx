@@ -138,7 +138,7 @@ export default function Footer() {
             <h3 className="font-bold theme-text-primary mb-4">Contact</h3>
             <ul className="space-y-2 theme-text-secondary text-sm">
               <li>
-                <Link href="/contacts" className="hover:text-brand-secondary transition-colors">
+                <Link href="/contact" className="hover:text-brand-secondary transition-colors">
                   Get in Touch
                 </Link>
               </li>

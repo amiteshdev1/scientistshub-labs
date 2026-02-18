@@ -676,10 +676,10 @@ export default function Navbar() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-primary)] transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <Link
-              href={buildUrl('/contacts')}
+              href={buildUrl('/contact')}
               className={`font-semibold px-3 py-2 text-[18px] transition-colors hover:text-[var(--accent-primary)] text-[var(--text-primary)] relative group`}
             >
-              Contacts
+              Contact
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-primary)] transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
@@ -914,8 +914,8 @@ export default function Navbar() {
               <Link href={buildUrl('/blogs')} onClick={closeAllMenus} className="block px-4 py-3 rounded-lg font-semibold transition-colors text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent-primary)]">
                 Blogs
               </Link>
-              <Link href={buildUrl('/contacts')} onClick={closeAllMenus} className="block px-4 py-3 rounded-lg font-semibold transition-colors text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent-primary)]">
-                Contacts
+              <Link href={buildUrl('/contact')} onClick={closeAllMenus} className="block px-4 py-3 rounded-lg font-semibold transition-colors text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--accent-primary)]">
+                Contact
               </Link>
             </div>
 

@@ -274,7 +274,7 @@ export default function SEOServicesPage() {
         title="Search Engine Optimization"
         description="Rank higher on Google and drive organic traffic to your website. Our data-driven SEO strategies deliver measurable results and sustainable growth."
         primaryCTA={{ text: 'Boost Rankings', href: '/request-a-quote' }}
-        secondaryCTA={{ text: 'Free SEO Audit', href: '/contacts' }}
+        secondaryCTA={{ text: 'Free SEO Audit', href: '/contact' }}
         dashboardComponent={<MarketingDashboard />}
       />
       {/* Rest of page... */}

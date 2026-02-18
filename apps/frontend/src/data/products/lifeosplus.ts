@@ -132,7 +132,7 @@ const lifeOSPlusData: ProductData = {
     cta: {
         primary: {
             text: 'Request Early Access',
-            href: '/contacts'
+            href: '/contact'
         },
         secondary: {
             text: 'Learn More',
