@@ -83,31 +83,7 @@ export default function RequestQuotePage() {
             {/* Form Container */}
             <div className="bg-[var(--card-bg)]/80 backdrop-blur-xl border border-[var(--border-secondary)] rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
               
-              {/* Status Messages */}
-              {submitStatus === 'success' && (
-                <div className="mb-8 p-6 bg-green-500/10 border border-green-500/30 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-4">
-                  <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 shrink-0">
-                    <CheckCircle className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-green-500 font-bold text-lg">Quote Request Received!</h3>
-                    <p className="text-green-500/80">We'll review your details and get back to you within 24 hours.</p>
-                  </div>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="mb-8 p-6 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-4">
-                  <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 shrink-0">
-                    <AlertCircle className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-red-500 font-bold text-lg">Something went wrong</h3>
-                    <p className="text-red-500/80">{errorMessage}</p>
-                  </div>
-                </div>
-              )}
-
+             
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Personal Info */}
                 <div className="space-y-6">
@@ -300,6 +276,31 @@ export default function RequestQuotePage() {
                   </p>
                 </div>
               </form>
+               {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="mt-8 p-6 bg-green-500/10 border border-green-500/30 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-4">
+                  <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 shrink-0">
+                    <CheckCircle className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-green-500 font-bold text-lg">Quote Request Received!</h3>
+                    <p className="text-green-500/80">We'll review your details and get back to you within 24 hours.</p>
+                  </div>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mt-8 p-6 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-center gap-4 animate-in fade-in slide-in-from-top-4">
+                  <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 shrink-0">
+                    <AlertCircle className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-red-500 font-bold text-lg">Something went wrong</h3>
+                    <p className="text-red-500/80">{errorMessage}</p>
+                  </div>
+                </div>
+              )}
+
             </div>
           </div>
         </div>

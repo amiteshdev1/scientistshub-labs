@@ -150,19 +150,7 @@ export default function ContactsPage() {
               <h2 className="text-3xl font-bold mb-2">Send a Message</h2>
               <p className="text-[var(--text-secondary)] mb-8">We usually respond within 24 hours.</p>
               
-              {submitStatus === 'success' && (
-                <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl flex items-center gap-3 animate-in fade-in">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <p className="text-green-500 font-medium">Message sent successfully!</p>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3 animate-in fade-in">
-                  <AlertCircle className="w-5 h-5 text-red-500" />
-                  <p className="text-red-500 font-medium">{errorMessage}</p>
-                </div>
-              )}
+              
 
               <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
                 <div className="space-y-2">
@@ -247,6 +235,19 @@ export default function ContactsPage() {
                   )}
                 </button>
               </form>
+              {submitStatus === 'success' && (
+                <div className="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl flex items-center gap-3 animate-in fade-in">
+                  <CheckCircle className="w-5 h-5 text-green-500" />
+                  <p className="text-green-500 font-medium">Message sent successfully!</p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3 animate-in fade-in">
+                  <AlertCircle className="w-5 h-5 text-red-500" />
+                  <p className="text-red-500 font-medium">{errorMessage}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>

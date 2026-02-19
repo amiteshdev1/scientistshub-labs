@@ -1387,29 +1387,22 @@ h2 span.theme-accent-primary {
   --progress: 100%;
 }
 
-/* Specific animation delays for bounce effect */
-[animation-delay\\:0\\.2s] {
-  animation-delay: 0.2s;
-}
 
-[animation-delay\\:0\\.4s] {
-  animation-delay: 0.4s;
-}
 
 /* Arbitrary value support */
-.\\[animation-delay\\:0\\.2s\\] {
+.\[animation-delay\:0\.2s\] {
   animation-delay: 0.2s;
 }
 
-.\\[animation-delay\\:0\\.4s\\] {
+.\[animation-delay\:0\.4s\] {
   animation-delay: 0.4s;
 }
 
-.\\[animation-duration\\:3s\\] {
+.\[animation-duration\:3s\] {
   animation-duration: 3s;
 }
 
-.\\[animation-duration\\:2s\\] {
+.\[animation-duration\:2s\] {
   animation-duration: 2s;
 }
 

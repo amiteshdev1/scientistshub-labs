@@ -1,7 +1,6 @@
 # Root
 node_modules/
 .turbo/
-.env*.local
 
 # Apps
 apps/*/node_modules/
