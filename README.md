@@ -1,101 +1,133 @@
-# ScientistsHub Labs - Monorepo
+﻿# ScientistsHub Labs - Monorepo
 
-ScientistsHub Labs is a cutting-edge research and product engineering studio. This repository contains the source code for our main web platform and associated backend services, organized as a monorepo using [Turborepo](https://turbo.build/).
+ScientistsHub Labs is a cutting-edge research and product engineering studio. This repository contains the source code for our main web platform, organized as a monorepo using [Turborepo](https://turbo.build/).
+
+> **API:** All form submissions and data requests go to the external API at
+> `https://api.scientistshub.com`. There is no backend application in this repo.
 
 ## 🏗️ Architecture
 
-This project is structured as a monorepo with the following workspaces:
-
-- **`apps/frontend`**: Next.js 15 application (App Router) for the main website.
-- **`apps/backend`**: Express.js server for handling API requests (contact forms, quotes) and email services via Nodemailer.
-- **`packages/`**: Shared configurations (ESLint, TypeScript, Tailwind).
+```
+scientistshub-labs/
+├── apps/
+│   └── frontend/          # Next.js 15 web application
+├── packages/
+│   ├── eslint-config/     # Shared ESLint configurations
+│   └── typescript-config/ # Shared tsconfig files
+├── package.json           # Root scripts
+└── turbo.json             # Turborepo pipeline
+```
 
 ## 🚀 Features
 
-- **Monorepo Architecture** - Efficient build system with Turborepo.
-- **Next.js 15 Frontend** - Server Components, App Router, and dynamic routing.
-- **Express.js Backend** - Robust API handling and email dispatch services.
-- **Email Integration** - Server-side email sending using Nodemailer (Gmail SMTP).
-- **Type Safety** - Full TypeScript support across frontend and backend.
-- **Modern Styling** - Tailwind CSS v4 with custom design system and dark mode support.
-- **Performance** - Optimized builds and asset delivery.
+- **Monorepo Architecture** — Fast, incremental builds with Turborepo.
+- **Next.js 15 Frontend** — App Router, Server Components, dynamic routing.
+- **External API Integration** — Contact and quote forms POST to `api.scientistshub.com`.
+- **Type Safety** — Full TypeScript throughout.
+- **Modern Styling** — Tailwind CSS with custom design system and dark mode.
+- **Performance** — Optimised builds, image lazy-loading, static assets.
 
 ## 🛠️ Tech Stack
 
 ### Frontend (`apps/frontend`)
 
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4, Framer Motion
-- **State Management**: React Context (Theme, Auth)
-
-### Backend (`apps/backend`)
-
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Language**: TypeScript
-- **Email**: Nodemailer
-- **Security**: Helmet, CORS
+| Layer | Tech |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 4, Framer Motion |
+| State | React Context (Theme, Auth) |
+| Forms | Native fetch + AbortController |
 
 ### Tooling
 
-- **Build System**: Turborepo
-- **Package Manager**: npm
-- **Linting**: ESLint
+| Tool | Purpose |
+|---|---|
+| Turborepo | Monorepo build orchestration |
+| npm workspaces | Package management |
+| ESLint | Linting |
+| Prettier | Formatting |
 
 ## 🏁 Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- npm
+- npm 10+
 
 ### Installation
 
-1. **Clone the repository:**
+```bash
+git clone https://github.com/amitesh-maurya/Scientistshub-Labs.git
+cd Scientistshub-Labs
+npm install
+```
 
-    ```bash
-    git clone https://github.com/yourusername/scientistshub-labs.git
-    cd scientistshub-labs
-    ```
+### Environment Setup
 
-2. **Install dependencies (from root):**
-
-    ```bash
-    npm install
-    ```
-
-3. **Environment Setup:**
-
-    - **Frontend**: Create `apps/frontend/.env.local`
-    - **Backend**: Create `apps/backend/.env`
-
-    *See [Environment Variables](#-environment-variables) section below for details.*
-
-4. **Run Development Server:**
-
-    ```bash
-    npm run dev
-    ```
-
-    This command uses Turbo to start both the frontend (localhost:3000) and backend (localhost:4000) concurrently.
-
-## 🔐 Environment Variables
-
-### Frontend (`apps/frontend/.env.local`)
+Create `apps/frontend/.env.local`:
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
+NEXT_PUBLIC_API_URL=https://api.scientistshub.com/api
+NEXT_PUBLIC_CONTACT_API_URL=https://api.scientistshub.com/api/contact
+NEXT_PUBLIC_QUOTE_API_URL=https://api.scientistshub.com/api/quote
 NEXT_PUBLIC_APP_BASE_URL=http://localhost:3000
 ```
 
-### Backend (`apps/backend/.env`)
+### Start Development Server
+
+```bash
+npm run dev       # → http://localhost:3000
+```
+
+In dev mode the Next.js rewrite in `next.config.mjs` forwards every
+`/api/*` request to `http://localhost:5000/api/*` — so requests hit your
+**local backend** (not production). No CORS issues, full offline capability.
+
+---
+
+## 🗄️ Local Backend & Database Setup
+
+To store form data locally during development you need the **ScientistsHub API**
+running alongside MongoDB.
+
+### 1 — Start MongoDB
+
+**Option A — Docker (recommended)**
+
+```bash
+docker run -d --name mongo-dev -p 27017:27017 mongo:7
+```
+
+**Option B — Local install**
+
+Install [MongoDB Community Edition](https://www.mongodb.com/docs/manual/installation/),
+then:
+
+```bash
+mongod --dbpath ./data/db   # or use the system service
+```
+
+### 2 — Clone & configure the API
+
+The backend lives in a **separate repository**:
+
+```bash
+git clone https://github.com/amitesh-maurya/Scientistshub-API.git
+cd Scientistshub-API
+npm install
+```
+
+Create `apps/backend/.env`:
 
 ```env
-PORT=4000
+PORT=5000
 NODE_ENV=development
 
-# SMTP Configuration (Gmail Example)
+# MongoDB
+MONGODB_URI=mongodb://localhost:27017/scientistshub
+
+# Email (optional in dev — set to skip sending)
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your-email@gmail.com
@@ -103,33 +135,69 @@ SMTP_PASS=your-app-password
 CONTACT_EMAIL_TO=contact@scientistshub.com
 ```
 
+> **Tip:** Leave SMTP fields blank in dev — the backend will log emails to the
+> console instead of sending them.
+
+### 3 — Start the backend
+
+```bash
+npm run dev       # starts Express on http://localhost:5000
+```
+
+Confirm it is running:
+
+```bash
+curl http://localhost:5000/api/health
+# → { "status": "ok" }
+```
+
+### 4 — Start the frontend (separate terminal)
+
+```bash
+cd ../Scientistshub-Labs
+npm run dev       # → http://localhost:3000
+```
+
+All form submissions now POST to `localhost:5000` and are saved to your local
+MongoDB `scientistshub` database.
+
+### 5 — Browse saved data
+
+```bash
+# Using mongosh
+mongosh scientistshub
+db.contacts.find().pretty()       # contact form submissions
+db.quotes.find().pretty()         # quote requests
+```
+
+Or use [MongoDB Compass](https://www.mongodb.com/products/compass) and connect
+to `mongodb://localhost:27017`.
+
+## 🌐 API Reference
+
+| Route | Method | Endpoint | Purpose |
+|---|---|---|---|
+| `/contact` | `POST` | `/api/contact` | Contact form |
+| `/request-a-quote` | `POST` | `/api/quote` | General quote request |
+| `/quote` | `POST` | `/api/quote` | Website quote (full schema) |
+
+See `src/lib/api/quoteService.ts` for full typed request/response interfaces
+and error handling (validation errors, rate limiting, timeouts).
+
 ## 📜 Available Scripts
 
-Run these commands from the **root directory**:
+Run from the **root directory**:
 
-- `npm run dev`: Start all apps in development mode.
-- `npm run build`: Build all apps for production.
-- `npm run lint`: Lint all apps and packages.
-- `npm run clean`: Clean up `node_modules` and `.turbo` caches.
-
-## 📂 Project Structure
-
-```
-scientistshub-labs/
-├── apps/
-│   ├── frontend/       # Next.js web application
-│   └── backend/        # Express.js API server
-├── packages/
-│   ├── eslint-config/  # Shared ESLint configurations
-│   ├── typescript-config/ # Shared tsconfig.json
-│   └── ui/             # (Optional) Shared UI components
-├── package.json        # Root script configuration
-└── turbo.json          # Turborepo pipeline configuration
-```
+| Script | Description |
+|---|---|
+| `npm run dev` | Start Next.js in development mode |
+| `npm run build` | Build for production |
+| `npm run lint` | Lint all packages |
+| `npm run format` | Format with Prettier |
 
 ## 📞 Support
 
-For support, email <[EMAIL_ADDRESS]>.
+For support, email support@scientistshub.com.
 
 ---
 

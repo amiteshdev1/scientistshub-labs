@@ -6,7 +6,7 @@ A modern, full-stack web application built with Next.js 15, featuring a comprehe
 
 - ✨ **29+ Pages** - Complete website with services, blog, products, and more
 - 🎨 **Dark/Light Theme** - Seamless theme switching with system preference detection
-- 📧 **EmailJS Integration** - Functional contact and quote request forms
+- 📧 **API-powered Forms** - Contact and quote forms POST to `api.scientistshub.com`
 - 📱 **Fully Responsive** - Mobile-first design that works on all devices
 - 🔍 **SEO Optimized** - Meta tags, OpenGraph, and semantic HTML
 - ⚡ **Next.js 15** - Latest App Router with Server Components
@@ -57,14 +57,13 @@ npm run dev
 Create a `.env.local` file in the root directory:
 
 ```bash
-# API Configuration
-NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
+# API
+NEXT_PUBLIC_API_URL=https://api.scientistshub.com/api
+NEXT_PUBLIC_CONTACT_API_URL=https://api.scientistshub.com/api/contact
+NEXT_PUBLIC_QUOTE_API_URL=https://api.scientistshub.com/api/quote
 
-# EmailJS Configuration
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE_ID=your_contact_template_id
-NEXT_PUBLIC_EMAILJS_QUOTE_TEMPLATE_ID=your_quote_template_id
+# App
+NEXT_PUBLIC_APP_BASE_URL=http://localhost:3000
 ```
 
 ## 📜 Available Scripts
@@ -81,12 +80,17 @@ npm start            # Start production server
 npm run lint         # Run ESLint
 ```
 
-## 📧 EmailJS Setup
+## 🌐 API Endpoints
 
-1. Visit [EmailJS](https://www.emailjs.com/) and create a free account
-2. Add an email service (Gmail, Outlook, etc.)
-3. Create two email templates (contact & quote)
-4. Copy credentials to `.env.local`
+All form submissions hit `https://api.scientistshub.com`:
+
+| Route | Endpoint |
+|---|---|
+| `/contact` | `POST /api/contact` |
+| `/request-a-quote` | `POST /api/quote` |
+| `/quote` | `POST /api/quote` |
+
+See `src/lib/api/quoteService.ts` for full typed interfaces.
 
 ## 🚀 Deployment
 
@@ -106,8 +110,7 @@ npm run lint         # Run ESLint
 - **Tailwind CSS 4.1** - Styling
 - **next-themes** - Theme management
 - **Framer Motion** - Animations
-- **@emailjs/browser** - Email sending
-- **Axios** - HTTP client
+- **native fetch** - Form submissions with AbortController timeout
 
 ## 📄 Pages
 

@@ -2,7 +2,13 @@
 
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, User, MessageSquare, Tag, Globe, Clock, ArrowRight } from 'lucide-react';
-import { sendContactEmail, type ContactFormData } from '@/lib/emailService';
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 export default function ContactsPage() {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -21,11 +27,28 @@ export default function ContactsPage() {
     setSubmitStatus('idle');
     setErrorMessage('');
 
+    const apiUrl = process.env.NEXT_PUBLIC_CONTACT_API_URL!;
+
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
     try {
-      await sendContactEmail(formData);
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request failed with status ${res.status}`);
+      }
+
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
       setSubmitStatus('error');
