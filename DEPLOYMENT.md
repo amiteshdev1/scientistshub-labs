@@ -1,80 +1,157 @@
 # Deployment & Testing Checklist
 
+> **Architecture note:** This is a **frontend-only** monorepo. All API calls are
+> made to the external backend at `https://api.scientistshub.com`. There is no
+> local backend application in this repository.
+
+---
+
 ## 🚀 Pre-Deployment Checklist
 
 ### ✅ Frontend (`apps/frontend`)
 
-- [ ] **Environment Variables**:
-  - `NEXT_PUBLIC_API_BASE_URL`: Production backend URL (e.g., `https://api.labs.scientistshub.com/api`).
-  - `NEXT_PUBLIC_APP_BASE_URL`: Production frontend URL (e.g., `https://scientistshub.com`).
-- [ ] **Build Verification**: Run `npm run build` in `apps/frontend` to ensure no errors.
-- [ ] **Optimization**: Check `next.config.mjs` for image domains and optimizations.
-- [ ] **Assets**: Ensure `public/` directory contains updated manifest, icons, and `sw.js`.
+- [ ] **Environment Variables** — set in Vercel (or your platform) dashboard:
 
-### ✅ Backend (`apps/backend`)
+  | Variable | Dev (`.env.local`) | Production |
+  |---|---|---|
+  | `NEXT_PUBLIC_API_URL` | `/api` | `https://api.scientistshub.com/api` |
+  | `NEXT_PUBLIC_CONTACT_API_URL` | `/api/contact` | `https://api.scientistshub.com/api/contact` |
+  | `NEXT_PUBLIC_QUOTE_API_URL` | `/api/quote` | `https://api.scientistshub.com/api/quote` |
+  | `NEXT_PUBLIC_APP_BASE_URL` | `http://localhost:3000` | `https://labs.scientistshub.com` |
 
-- [ ] **Environment Variables**:
-  - `PORT`: Port for the server (e.g., `4000` or provided by platform).
-  - `NODE_ENV`: Set to `production`.
-  - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`: Valid email credentials.
-  - `CONTACT_EMAIL_TO`: Recipient email for contact forms.
-- [ ] **Build Verification**: Run `npm run build` in `apps/backend` (compiles TypeScript to `dist/`).
-- [ ] **Start Script**: Ensure deployment platform runs `npm start` (which executes `node dist/index.js`).
+- [ ] **Build Verification**: Run `npm run build` in `apps/frontend` — zero errors required.
+- [ ] **Next.js config**: Confirm `next.config.mjs` rewrites target the correct production API URL.
+- [ ] **Assets**: Ensure `public/` contains updated manifest, icons, `robots.txt`, and `sitemap.xml`.
+
+---
+
+## 🌐 API Endpoints Used
+
+The frontend calls the following external API endpoints:
+
+| Form | Method | Endpoint |
+|---|---|---|
+| Contact (`/contact`) | `POST` | `https://api.scientistshub.com/api/contact` |
+| Request a Quote (`/request-a-quote`) | `POST` | `https://api.scientistshub.com/api/quote` |
+| Website Quote (`/quote`) | `POST` | `https://api.scientistshub.com/api/quote` |
+
+All endpoints expect **JSON** bodies. See `src/lib/api/quoteService.ts` for the
+full typed request/response interface.
+
+### Contact Payload
+```json
+{
+  "name": "string",
+  "email": "string",
+  "subject": "string",
+  "message": "string"
+}
+```
+
+### Quote Payload (`/request-a-quote`)
+```json
+{
+  "name": "string",
+  "email": "string",
+  "phone": "string | null",
+  "company": "string | null",
+  "service": "string",
+  "budget": "string",
+  "timeline": "string",
+  "description": "string"
+}
+```
+
+### Website Quote Payload (`/quote`)
+```json
+{
+  "name": "string",
+  "email": "string",
+  "phone": "string | null",
+  "company": "string | null",
+  "websiteType": "landing_page | portfolio | business | ecommerce | blog | educational | nonprofit | saas | custom | other",
+  "projectDescription": "string (20–5000 chars)",
+  "features": "string[]",
+  "existingWebsite": "string | null",
+  "designPreferences": "string | null",
+  "referenceWebsites": "string[]",
+  "budget": "under_500 | 500_1000 | 1000_3000 | 3000_5000 | 5000_10000 | above_10000 | not_sure",
+  "timeline": "asap | 1_2_weeks | 1_month | 2_3_months | flexible",
+  "source": "scientistshub.com",
+  "userAgent": "string",
+  "referrer": "string | null"
+}
+```
 
 ---
 
 ## 🧪 Testing Guide
 
-### Manual Testing Procedure
+### Local Development
 
-1. **Frontend Connectivity**:
-    - Verify homepage loads without errors.
-    - Check browser console for 404s or JS errors.
-    - Test navigation to all main sections.
+**Prerequisites:** Node.js 18+, MongoDB running on `localhost:27017`, and the
+[Scientistshub-API](https://github.com/amitesh-maurya/Scientistshub-API)
+backend running on `localhost:5000`.
 
-2. **Backend Connectivity**:
-    - Verify backend health endpoint: `https://api.labs.scientistshub.com/api/health`.
+```bash
+# 1. Start MongoDB (Docker)
+docker run -d --name mongo-dev -p 27017:27017 mongo:7
 
-3. **Form Submission (End-to-End)**:
-    - **Contact Form**: Submit a test message. Verify success message on frontend and email receipt in inbox.
-    - **Quote Form**: Submit a detailed quote request. Verify data integrity in email.
+# 2. Start the API backend (separate repo, port 5000)
+cd Scientistshub-API && npm run dev
 
-4. **Theme System**:
-    - Toggle dark/light mode and ensure persistence across refreshes.
+# 3. Start the frontend
+cd Scientistshub-Labs && npm run dev   # → http://localhost:3000
+```
+
+`/api/*` in `next.config.mjs` forwards all requests to
+`http://localhost:5000/api/*`, so forms hit the local backend and data is saved
+to MongoDB. `.env` and `.env.local` use relative `/api/*` URLs for this.
+
+**Production** uses absolute `https://api.scientistshub.com/api/*` URLs via
+`.env.production` — the proxy rewrite is never reached in production builds.
+
+### Manual QA Checklist
+
+1. **Pages load**: Homepage, `/contact`, `/request-a-quote`, `/quote` — no console errors.
+2. **Contact form** (`/contact`): Submit a test message → success banner appears.
+3. **Legacy quote form** (`/request-a-quote`): Fill all required fields → success banner.
+4. **Website quote form** (`/quote`): Fill all required fields → success card with reference ID.
+5. **Validation**: Leave required fields empty, submit → inline field errors shown.
+6. **Error handling**: Use browser DevTools to block the API request → friendly error banner (no `alert()`).
+7. **Theme**: Toggle dark/light mode — persists across page refresh.
+8. **Responsive**: Test at 375 px, 768 px, and 1280 px breakpoints.
 
 ---
 
-## 🌐 Deployment Strategies
+## 🌐 Deployment Strategy
 
-### Frontend Deployment (Vercel/Netlify)
+### Recommended: Vercel
 
-**Recommended: Vercel**
+1. Import the repository into Vercel.
+2. **Root Directory**: `apps/frontend`
+3. **Framework Preset**: Next.js (auto-detected)
+4. **Build Command**: `cd ../.. && npx turbo run build --filter=frontend`
+5. **Environment Variables**: Add the four `NEXT_PUBLIC_*` variables from the table above.
+6. Deploy.
 
-1. **Project Import**: Import the repository.
-2. **Root Directory**: Set to `apps/frontend`.
-3. **Framework Preset**: Next.js.
-4. **Build Command**: `cd ../.. && npx turbo run build --filter=frontend` (or default if root is set correctly).
-5. **Environment Variables**: Add production variables in Vercel settings.
+### Alternative: Netlify / Cloudflare Pages
 
-### Backend Deployment (Railway/Render/Heroku)
-
-**Recommended: Railway or Render**
-
-1. **Project Import**: Import the repository.
-2. **Root Directory**: Set to `apps/backend`.
-3. **Build Command**: `npm install && npm run build`.
-4. **Start Command**: `npm start`.
-5. **Environment Variables**: Add production variables (SMTP, etc.) in platform settings.
+- Build command: `npm run build`
+- Publish directory: `apps/frontend/.next`
+- Set the same four environment variables in the platform dashboard.
 
 ---
 
 ## 🔍 Post-Deployment Verification
 
-- [ ] **Frontend**: Load production URL.
-- [ ] **Backend**: Hit `/api/health`.
-- [ ] **Forms**: Send a live test email.
-- [ ] **Logs**: Check production logs for any startup errors or unhandled rejections.
+- [ ] Production URL loads without JS or network errors.
+- [ ] `/contact` form submits successfully → success message displayed.
+- [ ] `/quote` form submits successfully → reference ID shown.
+- [ ] `robots.txt` accessible at `/robots.txt`.
+- [ ] `sitemap.xml` accessible at `/sitemap.xml`.
+- [ ] Lighthouse score ≥ 90 on Performance and Accessibility.
 
 ---
 
-**Last Updated:** 2026-02-10
+**Last Updated:** 2026-02-24

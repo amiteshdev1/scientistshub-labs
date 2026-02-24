@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import { AuthProvider } from '@/providers/AuthProvider';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
 import TopArrow from '@/Components/TopArrow';
@@ -79,17 +78,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           strategy="beforeInteractive" 
         />
-        <AuthProvider>
-          <ThemeProvider>
-            <Navbar />
-            <TopArrow />
-            <FloatingContact />
-            <main className="w-full overflow-x-hidden mt-[60px]">
-              {children}
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </AuthProvider>
+        <ThemeProvider>
+          <Navbar />
+          <TopArrow />
+          <FloatingContact />
+          <main className="w-full overflow-x-hidden mt-[60px]">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
