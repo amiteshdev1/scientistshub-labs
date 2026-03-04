@@ -10,6 +10,13 @@ interface ContactFormData {
   message: string;
 }
 
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 export default function ContactsPage() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -17,12 +24,60 @@ export default function ContactsPage() {
     subject: '',
     message: ''
   });
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+    let isValid = true;
+
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+      isValid = false;
+    } else if (formData.name.length < 3) {
+      errors.name = 'Name must be at least 3 characters';
+      isValid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    } else if (!emailRegex.test(formData.email)) {
+      errors.email = 'Please provide a valid email address';
+      isValid = false;
+    }
+
+    if (!formData.subject.trim()) {
+      errors.subject = 'Subject is required';
+      isValid = false;
+    } else if (formData.subject.length < 3) {
+      errors.subject = 'Subject must be at least 3 characters';
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+      isValid = false;
+    } else if (formData.message.length < 10) {
+      errors.message = 'Message must be at least 10 characters';
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Run frontend validation first
+    if (!validateForm()) {
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
@@ -32,8 +87,11 @@ export default function ContactsPage() {
     const payload = {
       name: formData.name,
       email: formData.email,
+      contactReason: 'other', // Required by backend enum
       subject: formData.subject,
       message: formData.message,
+      timestamp: new Date().toISOString(),
+      source: 'labs.scientistshub.com'
     };
 
     try {
@@ -44,13 +102,30 @@ export default function ContactsPage() {
       });
 
       if (!res.ok) {
-        throw new Error(`Request failed with status ${res.status}`);
+        let errorData = null;
+        try {
+          errorData = await res.json();
+        } catch {
+          // If response isn't JSON
+        }
+
+        if (errorData && errorData.errors) {
+          console.error("Backend validation errors:", errorData.errors);
+          const messages = errorData.errors.map((e: any) => `${e.field}: ${e.message}`).join(', ');
+          throw new Error(messages);
+        } else if (errorData && errorData.message) {
+          throw new Error(errorData.message);
+        } else {
+          throw new Error(`Request failed with status ${res.status}`);
+        }
       }
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormErrors({});
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
+      console.error(error);
       setSubmitStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
     } finally {
@@ -59,10 +134,15 @@ export default function ContactsPage() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    // Clear the specific error when the user starts typing again
+    if (formErrors[name as keyof FormErrors]) {
+      setFormErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   return (
@@ -90,7 +170,7 @@ export default function ContactsPage() {
       <section className="pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            
+
             {/* Contact Information (Left Column) */}
             <div className="space-y-8">
               <div className="bg-[var(--card-bg)]/50 backdrop-blur-md border border-[var(--border-secondary)] rounded-3xl p-8 hover:shadow-lg transition-all duration-300">
@@ -137,7 +217,7 @@ export default function ContactsPage() {
                         Noida, Uttar Pradesh
                       </p>
                       <p className="text-sm text-[var(--text-secondary)] mt-1">201301, India (Headquarters)</p>
-                      
+
                       <div className="mt-4 pt-4 border-t border-[var(--border-primary)]">
                         <p className="text-lg font-medium text-[var(--text-primary)]">
                           Jaunpur, Uttar Pradesh
@@ -167,15 +247,15 @@ export default function ContactsPage() {
 
             {/* Contact Form (Right Column) */}
             <div className="bg-[var(--card-bg)] border border-[var(--border-secondary)] rounded-3xl p-8 md:p-10 shadow-xl relative overflow-hidden">
-               {/* Decorative background element inside card */}
-               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent-secondary)]/10 rounded-bl-[100px] pointer-events-none" />
+              {/* Decorative background element inside card */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent-secondary)]/10 rounded-bl-[100px] pointer-events-none" />
 
               <h2 className="text-3xl font-bold mb-2">Send a Message</h2>
               <p className="text-[var(--text-secondary)] mb-8">We usually respond within 24 hours.</p>
-              
-              
 
-              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+
+
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-[var(--text-secondary)] ml-1">Name *</label>
                   <div className="relative group">
@@ -184,12 +264,12 @@ export default function ContactsPage() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-1 focus:ring-[var(--accent-primary)] outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)]"
+                      className={`w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border ${formErrors.name ? 'border-red-500 focus:ring-red-500' : 'border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-[var(--accent-primary)]'} focus:ring-1 outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)]`}
                       placeholder="Your name"
                     />
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)] transition-colors" />
+                    <User className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${formErrors.name ? 'text-red-500' : 'text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)]'} transition-colors`} />
                   </div>
+                  {formErrors.name && <p className="text-red-500 text-xs ml-1 animate-in fade-in">{formErrors.name}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -200,12 +280,12 @@ export default function ContactsPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-1 focus:ring-[var(--accent-primary)] outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)]"
+                      className={`w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border ${formErrors.email ? 'border-red-500 focus:ring-red-500' : 'border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-[var(--accent-primary)]'} focus:ring-1 outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)]`}
                       placeholder="your@email.com"
                     />
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)] transition-colors" />
+                    <Mail className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${formErrors.email ? 'text-red-500' : 'text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)]'} transition-colors`} />
                   </div>
+                  {formErrors.email && <p className="text-red-500 text-xs ml-1 animate-in fade-in">{formErrors.email}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -216,12 +296,12 @@ export default function ContactsPage() {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-1 focus:ring-[var(--accent-primary)] outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)]"
+                      className={`w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border ${formErrors.subject ? 'border-red-500 focus:ring-red-500' : 'border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-[var(--accent-primary)]'} focus:ring-1 outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)]`}
                       placeholder="How can we help?"
                     />
-                    <Tag className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)] transition-colors" />
+                    <Tag className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${formErrors.subject ? 'text-red-500' : 'text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)]'} transition-colors`} />
                   </div>
+                  {formErrors.subject && <p className="text-red-500 text-xs ml-1 animate-in fade-in">{formErrors.subject}</p>}
                 </div>
 
                 <div className="space-y-2">
@@ -231,13 +311,13 @@ export default function ContactsPage() {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      required
                       rows={5}
-                      className="w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-1 focus:ring-[var(--accent-primary)] outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)] resize-none"
+                      className={`w-full px-4 py-3 pl-10 rounded-xl bg-[var(--bg-tertiary)] border ${formErrors.message ? 'border-red-500 focus:ring-red-500' : 'border-[var(--border-primary)] focus:border-[var(--accent-primary)] focus:ring-[var(--accent-primary)]'} focus:ring-1 outline-none transition-all placeholder:text-[var(--text-muted)] text-[var(--text-primary)] resize-none`}
                       placeholder="Tell us more..."
                     ></textarea>
-                    <MessageSquare className="absolute left-3 top-5 w-4 h-4 text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)] transition-colors" />
+                    <MessageSquare className={`absolute left-3 top-5 w-4 h-4 ${formErrors.message ? 'text-red-500' : 'text-[var(--text-muted)] group-focus-within:text-[var(--accent-primary)]'} transition-colors`} />
                   </div>
+                  {formErrors.message && <p className="text-red-500 text-xs ml-1 animate-in fade-in">{formErrors.message}</p>}
                 </div>
 
                 <button
